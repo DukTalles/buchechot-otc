@@ -10,7 +10,7 @@ Services = {
 }
 
 Servers_init = {
-    ["http://76.13.163.208/login.php"] = {
+    ["http://login.buchechot.com.br/login.php"] = {
         ["port"] = 80,
         ["protocol"] = 1512,
         ["httpLogin"] = true
