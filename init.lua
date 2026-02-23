@@ -21,6 +21,7 @@ Servers_init = {
       --  ["httpLogin"] = true
   --  }
 }
+---TESTE PUSH
 
 g_app.setName("OTClient - Redemption");
 g_app.setCompactName("otclient");
