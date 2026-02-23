@@ -3,7 +3,7 @@
 
 -- updater
 Services = {
-    --updater = "http://localhost/api/updater.php", --./updater
+    updater = "http://login.buchechot.com.br/api/updater.php", --./updater
     --status = "http://localhost/login.php", --./client_entergame | ./client_topmenu
     --websites = "http://localhost/?subtopic=accountmanagement", --./client_entergame "Forgot password and/or email"
     --createAccount = "http://localhost/clientcreateaccount.php", --./client_entergame -- createAccount.lua
@@ -22,6 +22,11 @@ Servers_init = {
   --  }
 }
 ---TESTE PUSH
+
+g_app.setVersion("15.12")
+g_app.setBuildCommit("15.12")
+g_app.setBuildDate("2024-07-29")
+g_app.setBuildArch("x64")
 
 g_app.setName("OTClient - Redemption");
 g_app.setCompactName("otclient");
