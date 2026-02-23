@@ -1,0 +1,46 @@
+testPingPanel < UIWidget
+  size: 200 20
+  focusable: false
+  pingImg
+  pingFpsLabel
+
+pingImg < UIWidget
+  size: 17 17
+  anchors.left: parent.left
+  anchors.verticalCenter: parent.verticalCenter
+  phantom: true
+  focusable: false
+
+pingFpsLabel < UIWidget
+  height: 14
+  text-auto-resize: true
+  anchors.left: prev.right
+  anchors.verticalCenter: parent.verticalCenter
+  margin-left: 3
+  phantom: true
+  font: verdana-11px-rounded
+  focusable: false
+
+Panel
+  anchors.top: parent.top
+  anchors.left: parent.left
+  height: 50
+  width: 200
+  margin-top: 10
+  margin-left: 5
+  Panel
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 20
+    layout:
+      type: horizontalBox
+
+  Panel
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 2
+    height: 20
+    layout:
+      type: horizontalBox

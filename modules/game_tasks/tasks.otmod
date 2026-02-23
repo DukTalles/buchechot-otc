@@ -1,0 +1,9 @@
+Module
+  name: game_tasks
+  description: Displays tasks system
+  author: Rookgaard
+  sandboxed: true
+  autoload: false
+  scripts: [ tasks ]
+  @onLoad: init()
+  @onUnload: terminate()

@@ -1,0 +1,328 @@
+TaskDifficultyTab < UIButton
+  size: 90 24
+  font: verdana-11px-rounded
+  color: #c0c0c0
+  text-offset: 0 0
+  image-source: /images/ui/button
+  image-color: #555555
+  image-clip: 0 0 22 23
+  image-border: 3
+
+  $hover !disabled:
+    color: #ffffff
+    image-color: #777777
+
+  $pressed:
+    color: #ffffff
+    image-color: #999999
+
+  $on:
+    color: #ffcc00
+    image-color: #aa8800
+
+  $disabled:
+    color: #666666
+
+TaskMonsterCard < Panel
+  size: 165 280
+  focusable: true
+  image-source: /images/ui/panel_flat
+  image-border: 4
+  border: 1 #444444
+  image-color: #555555
+
+  $focus:
+    border: 2 #ffcc00
+    image-color: #aa8800
+
+  Panel
+    id: headerPanel
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 26
+    margin-top: 4
+    margin-left: 4
+    margin-right: 4
+    image-source: /images/ui/panel_flat
+    image-border: 4
+    image-color: #775533
+
+    Label
+      id: monsterName
+      anchors.fill: parent
+      text-align: center
+      font: verdana-11px-rounded
+      color: #ffffff
+      text-auto-resize: false
+
+  UICreature
+    id: monsterCreature
+    anchors.top: headerPanel.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 8
+    size: 64 64
+    animate: true
+
+  Label
+    id: killsLabel
+    anchors.top: monsterCreature.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 8
+    font: verdana-11px-rounded
+    color: #ffcc00
+    text-auto-resize: true
+
+  Panel
+    id: rewardPanel
+    anchors.top: killsLabel.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 8
+    margin-left: 8
+    margin-right: 8
+    height: 55
+
+    Label
+      id: rewardTitle
+      anchors.top: parent.top
+      anchors.left: parent.left
+      !text: tr('Reward:')
+      font: verdana-11px-rounded
+      color: #ffffff
+
+    Label
+      id: expReward
+      anchors.top: rewardTitle.bottom
+      anchors.left: parent.left
+      margin-top: 2
+      font: verdana-11px-rounded
+      color: #00cc00
+      text-auto-resize: true
+
+    Label
+      id: itemReward
+      anchors.top: expReward.bottom
+      anchors.left: parent.left
+      margin-top: 2
+      font: verdana-11px-rounded
+      color: #ffaa00
+      text-auto-resize: true
+
+  Button
+    id: selectButton
+    anchors.bottom: cancelButton.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-left: 8
+    margin-right: 8
+    margin-bottom: 4
+    height: 24
+    !text: tr('Select Task')
+
+  Button
+    id: cancelButton
+    anchors.bottom: lockCheck.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-left: 8
+    margin-right: 8
+    margin-bottom: 4
+    height: 22
+    !text: tr('Cancel')
+    visible: false
+
+  CheckBox
+    id: lockCheck
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 8
+    width: 60
+    !text: tr('Lock')
+    font: verdana-11px-rounded
+    border-width: 0
+
+TaskEmptyLabel < Label
+  height: 40
+  text-align: center
+  color: #888888
+  font: verdana-11px-rounded
+
+MainWindow
+  id: taskSystemWindow
+  size: 580 480
+  !text: tr('Task Board')
+  @onEscape: modules.game_tasksystem.toggleWindow()
+
+  Panel
+    id: tabBar
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 32
+    margin-top: 5
+    margin-left: 10
+    margin-right: 10
+
+    TaskDifficultyTab
+      id: tabFacil
+      anchors.left: parent.left
+      anchors.verticalCenter: parent.verticalCenter
+      !text: tr('Facil')
+
+    TaskDifficultyTab
+      id: tabMedio
+      anchors.left: prev.right
+      anchors.verticalCenter: parent.verticalCenter
+      margin-left: 4
+      !text: tr('Medio')
+
+    TaskDifficultyTab
+      id: tabDificil
+      anchors.left: prev.right
+      anchors.verticalCenter: parent.verticalCenter
+      margin-left: 4
+      !text: tr('Dificil')
+
+    TaskDifficultyTab
+      id: tabHardcore
+      anchors.left: prev.right
+      anchors.verticalCenter: parent.verticalCenter
+      margin-left: 4
+      !text: tr('Hardcore')
+
+    TaskDifficultyTab
+      id: tabBoss
+      anchors.left: prev.right
+      anchors.verticalCenter: parent.verticalCenter
+      margin-left: 4
+      !text: tr('Boss')
+
+  HorizontalSeparator
+    id: separator1
+    anchors.top: tabBar.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 5
+    margin-left: 10
+    margin-right: 10
+
+  Panel
+    id: controlPanel
+    anchors.top: separator1.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 50
+    margin-top: 5
+    margin-left: 10
+    margin-right: 10
+
+    Panel
+      id: rerollInfoPanel
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 22
+
+      Label
+        id: rerollLabel
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        !text: tr('Rerolls Disponiveis:')
+        font: verdana-11px-rounded
+        color: #aaaaaa
+
+      Label
+        id: rerollCount
+        anchors.left: rerollLabel.right
+        anchors.verticalCenter: parent.verticalCenter
+        margin-left: 8
+        !text: tr('0')
+        font: verdana-11px-rounded
+        color: #ffcc00
+        text-auto-resize: true
+
+    Panel
+      id: buttonPanel
+      anchors.top: rerollInfoPanel.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 26
+      margin-top: 2
+
+      Button
+        id: buyRerollButton
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        size: 120 24
+        !text: tr('Comprar +1 (10k)')
+        @onClick: modules.game_tasksystem.buyReroll(1)
+
+      Button
+        id: rerollButton
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        size: 100 24
+        !text: tr('Usar Reroll')
+
+  HorizontalSeparator
+    id: separator2
+    anchors.top: controlPanel.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 5
+    margin-left: 10
+    margin-right: 10
+
+  Panel
+    id: cardsPanel
+    anchors.top: separator2.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: actionPanel.top
+    margin-top: 10
+    margin-left: 10
+    margin-right: 10
+    margin-bottom: 10
+
+    TaskMonsterCard
+      id: card1
+      anchors.left: parent.left
+      anchors.verticalCenter: parent.verticalCenter
+
+    TaskMonsterCard
+      id: card2
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+
+    TaskMonsterCard
+      id: card3
+      anchors.right: parent.right
+      anchors.verticalCenter: parent.verticalCenter
+
+  Panel
+    id: actionPanel
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 50
+    margin-bottom: 8
+    margin-left: 10
+    margin-right: 10
+
+    Label
+      id: messageLabel
+      anchors.left: parent.left
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: btnClose.left
+      margin-right: 10
+      font: verdana-11px-rounded
+      color: #ffffff
+
+    Button
+      id: btnClose
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      size: 80 26
+      !text: tr('Fechar')
+      @onClick: modules.game_tasksystem.toggleWindow()

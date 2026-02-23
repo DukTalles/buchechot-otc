@@ -1,0 +1,12 @@
+Module
+  name: bot_bridge
+  description: Bridge para bot externo - fala spells sem interferir no chat
+  author: TibiaBot
+  website: https://github.com
+  version: 1.0
+  autoload: false
+  reloadable: true
+  scripts: [ bot_bridge ]
+
+  @onLoad: init()
+  @onUnload: terminate()

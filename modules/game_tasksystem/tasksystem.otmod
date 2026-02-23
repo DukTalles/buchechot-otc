@@ -1,0 +1,9 @@
+Module
+  name: game_tasksystem
+  description: Task System with difficulty tabs (Easy, Medium, Hard)
+  author: Baiak Project
+  sandboxed: true
+  autoload: false
+  scripts: [ tasksystem ]
+  @onLoad: init()
+  @onUnload: terminate()
